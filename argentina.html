@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argentina - Football Legacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #6CACE4;
+            --secondary: #FFFFFF;
+            --accent: #F1B434;
+            --light: #f8f9fa;
+            --dark: #202122;
+            --gray: #6c757d;
+            --border: #e0e0e0;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a63a8 100%);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .search-box {
+            display: flex;
+            width: 50%;
+            max-width: 600px;
+        }
+        
+        .search-box input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background-color: #d89c1a;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .header-actions a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .header-actions a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(0,0,0,0.1);
+            padding: 12px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598880940086-4b627d4bcb5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Team Navigation */
+        .team-nav {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .team-nav-content {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .team-nav-list {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .team-nav-list a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .team-nav-list a:hover, .team-nav-list a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Team Header */
+        .team-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a62a7 100%);
+            color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .team-header-content {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            gap: 30px;
+        }
+        
+        .team-flag-large {
+            font-size: 100px;
+            width: 150px;
+            text-align: center;
+        }
+        
+        .team-basic-info h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .team-basic-info p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .team-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Team Content */
+        .team-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .team-main {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .content-section {
+            padding: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .content-section:last-child {
+            border-bottom: none;
+        }
+        
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+        }
+        
+        .trophy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .trophy-item {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .trophy-item i {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .trophy-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .trophy-item p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .squad-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .player-card {
+            background-color: var(--light);
+            border-radius: 6px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .player-number {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px;
+            font-weight: 700;
+        }
+        
+        .player-name {
+            padding: 10px 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .player-position {
+            padding: 5px;
+            font-size: 12px;
+            color: var(--gray);
+            background-color: #f0f0f0;
+        }
+        
+        /* Team Sidebar */
+        .team-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 18px 20px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-content {
+            padding: 20px;
+        }
+        
+        .coach-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .coach-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .coach-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .coach-details p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .info-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .info-value {
+            color: var(--gray);
+        }
+        
+        .fixture-list {
+            list-style: none;
+        }
+        
+        .fixture-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .fixture-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .fixture-date {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+        
+        .fixture-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .fixture-tournament {
+            font-size: 12px;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a549b 100%);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #d0d0d0;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #d0d0d0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .team-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .team-stats {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .team-nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .team-nav-list {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .trophy-list, .squad-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-stats {
+                flex-wrap: wrap;
+            }
+            
+            .trophy-list, .squad-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .argentina-flag {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book"></i>
+                    <span>Football Legacy</span>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-pen"></i>Essays</a>
+                    <a href="#"><i class="fas fa-pen"></i>Biography</a>
+                    <a href="#"><i class="fas fa-pen"></i>Matches</a>
+                </div>
+            </div>
+            <nav>
+                <div class="container nav-container">
+                    <div class="nav-left">
+                        <a href="#"><i class="fas fa-home"></i> Main Page</a>
+                        <a href="#"><i class="fas fa-upload"></i>Updates</a>
+                       
+                    </div>
+                    <div class="nav-right">
+                        <a href="national.html"><i class="fas fa-flag"></i>National Teams</a>
+                        <a href="#"><i class="fas fa-futbol"></i>Clubs</a>
+                        <a href="#"><i class="fas fa-users"></i>Players</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-flag"></i>Argentina</h1>
+            <p>Explore football national teams from around the world - from World Cup champions to emerging football nations</p>
+        </div>
+    </section>
+
+    <!-- Argentina Team Page -->
+    <div class="container">
+        <div class="team-header">
+            <div class="team-header-content">
+                <div class="team-flag-large">
+                    <img src="data:image/jpeg;base64,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" alt="Argentina Flag" class="argentina-flag">
+                </div>
+                <div class="team-basic-info">
+                    <h1>Argentina National Football Team</h1>
+                    <p>Asociación del Fútbol Argentino (AFA)</p>
+                    <p>Nickname: La Albiceleste (The White and Sky Blue)</p>
+                    <div class="team-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">World Cups</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Copa América</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Confederations Cups</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">FIFA Ranking</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-content">
+            <!-- Main Content -->
+            <div class="team-main">
+                <div class="content-section">
+                    <h2><i class="fas fa-info-circle"></i> Overview</h2>
+                    <p>The Argentina national football team, administered by the Argentine Football Association (AFA), represents Argentina in international men's football. Argentina is one of the most successful national teams in the world, having won three FIFA World Cups (1978, 1986, 2022) and a record-tying 15 Copa América titles.</p>
+                    <p>Argentina is known for its passionate style of play, technical skill, and production of world-class players, including the legendary Diego Maradona and Lionel Messi, widely considered among the greatest footballers of all time.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2><i class="fas fa-trophy"></i> Honours & Achievements</h2>
+                    <div class="trophy-list">
+                        <div class="trophy-item">
+                            <i class="fas fa-trophy"></i>
+                            <h3>FIFA World Cup</h3>
+                            <p>3 times (1978, 1986, 2022)</p>
+                        </div>
+                        <div class="trophy-item">
+                            <i class="fas fa-medal"></i>
+                            <h3>Copa América</h3>
+                            <p>15 times (record)</p>
+                        </div>
+                        <div class="trophy-item">
+                            <i class="fas fa-award"></i>
+                            <h3>FIFA Confederations Cup</h3>
+                            <p>1 time (1992)</p>
+                        </div>
+                        <div class="trophy-item">
+                            <i class="fas fa-globe"></i>
+                            <h3>Olympic Gold Medal</h3>
+                            <p>2 times (2004, 2008)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2><i class="fas fa-users"></i> Current Squad</h2>
+                    <p>The following 23 players were called up for the 2026 FIFA World Cup qualification matches.</p>
+                    <div class="squad-list">
+                        <div class="player-card">
+                            <div class="player-number">23</div>
+                            <div class="player-name">Emiliano Martínez</div>
+                            <div class="player-position">Goalkeeper</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">26</div>
+                            <div class="player-name">Nahuel Molina</div>
+                            <div class="player-position">Defender</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">13</div>
+                            <div class="player-name">Cristian Romero</div>
+                            <div class="player-position">Defender</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">19</div>
+                            <div class="player-name">Nicolás Otamendi</div>
+                            <div class="player-position">Defender</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">3</div>
+                            <div class="player-name">Nicolás Tagliafico</div>
+                            <div class="player-position">Defender</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">7</div>
+                            <div class="player-name">Rodrigo De Paul</div>
+                            <div class="player-position">Midfielder</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">24</div>
+                            <div class="player-name">Enzo Fernández</div>
+                            <div class="player-position">Midfielder</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">20</div>
+                            <div class="player-name">Alexis Mac Allister</div>
+                            <div class="player-position">Midfielder</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">10</div>
+                            <div class="player-name">Lionel Messi</div>
+                            <div class="player-position">Forward</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-number">9</div>
+                            <div class="player-name">Julián Álvarez</div>
+                            <div class="player-position">Forward</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2><i class="fas fa-history"></i> Historical Legends</h2>
+                    <p>Argentina has produced some of the greatest footballers in history. Diego Maradona is widely regarded as one of the greatest players of all time, leading Argentina to World Cup victory in 1986. Lionel Messi, after winning multiple Ballon d'Or awards, finally led Argentina to World Cup glory in 2022. Other legends include:</p>
+                    <ul>
+                        <li><strong>Alfredo Di Stéfano</strong> - Considered one of the greatest players of all time, though he played most of his career for Spain</li>
+                        <li><strong>Mario Kempes</strong> - Top scorer and star of Argentina's 1978 World Cup winning team</li>
+                        <li><strong>Gabriel Batistuta</strong> - Argentina's all-time top scorer until surpassed by Messi</li>
+                        <li><strong>Juan Román Riquelme</strong> - Masterful playmaker known for his vision and technique</li>
+                        <li><strong>Javier Zanetti</strong> - Legendary defender and Argentina's most-capped outfield player</li>
+                        <li><strong>Sergio Agüero</strong> - Prolific striker and one of Argentina's all-time top scorers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="team-sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-header">
+                        <h2><i class="fas fa-user-tie"></i> Coaching Staff</h2>
+                    </div>
+                    <div class="sidebar-content">
+                        <div class="coach-info">
+                            <div class="coach-avatar">LS</div>
+                            <div class="coach-details">
+                                <h3>Lionel Scaloni</h3>
+                                <p>Head Coach</p>
+                                <p>Since 2018</p>
+                            </div>
+                        </div>
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Assistant Coach</span>
+                                <span class="info-value">Pablo Aimar</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Goalkeeping Coach</span>
+                                <span class="info-value">Martín Tocalli</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Fitness Coach</span>
+                                <span class="info-value">Luis Martín</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-header">
+                        <h2><i class="fas fa-info-circle"></i> Team Information</h2>
+                    </div>
+                    <div class="sidebar-content">
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Confederation</span>
+                                <span class="info-value">CONMEBOL</span>
+                            </li>
+                            <li>
+                                <span class="info-label">FIFA Code</span>
+                                <span class="info-value">ARG</span>
+                            </li>
+                            <li>
+                                <span class="info-label">First International</span>
+                                <span class="info-value">1901 vs Uruguay</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Home Stadium</span>
+                                <span class="info-value">Estadio Monumental</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Kit Colors</span>
+                                <span class="info-value">White/Sky Blue/Black</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Top Players -->
+                <div class="top-players">
+                    <div class="sidebar-header">
+                        <h2><i class="fas fa-trophy"></i> Legendary Players</h2>
+                    </div>
+                    <div class="sidebar-content">
+                        <div class="player-item">
+                            <div class="player-avatar">CR</div>
+                            <div class="player-info">
+                                <h3>Cristiano Ronaldo</h3>
+                                <p>Portugal • 5× Champions League</p>
+                            </div>
+                        </div>
+                        <div class="player-item">
+                            <div class="player-avatar">DM</div>
+                            <div class="player-info">
+                                <h3>Diego Maradona</h3>
+                                <p>Argentina • 1986 World Cup</p>
+                            </div>
+                        </div>
+                        <div class="player-item">
+                            <div class="player-avatar">LM</div>
+                            <div class="player-info">
+                                <h3>Lionel Messi</h3>
+                                <p>Argentina • 7× Ballon d'Or</p>
+                            </div>
+                        </div>
+                        <div class="player-item">
+                            <div class="player-avatar">PM</div>
+                            <div class="player-info">
+                                <h3>Pelé</h3>
+                                <p>Brazil • 3× World Cup Winner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Football Legacy</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About us</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-hands-helping"></i> Donate</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> Developers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-users"></i> Community portal</a></li>
+                        <li><a href="#"><i class="fas fa-tasks"></i> Recent changes</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-gavel"></i> Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Content</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> Featured articles</a></li>
+                        <li><a href="#"><i class="fas fa-random"></i> Random article</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Football books</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Download center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tools</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-link"></i> Related sites</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> Upload file</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> Translate</a></li>
+                        <li><a href="#"><i class="fas fa-rss"></i> RSS feeds</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Football Legacy content is available under the Creative Commons Attribution-ShareAlike License 4.0.</p>
+                <p>Additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy.</p>
+                <p>Football Legacy is a non-profit project built by football enthusiasts worldwide.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Teams - Football Legacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a428a;
+            --secondary: #d52b1e;
+            --accent: #f8c300;
+            --light: #f8f9fa;
+            --dark: #202122;
+            --gray: #6c757d;
+            --border: #e0e0e0;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2b5c 100%);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .search-box {
+            display: flex;
+            width: 50%;
+            max-width: 600px;
+        }
+        
+        .search-box input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background-color: #b3241a;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .header-actions a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .header-actions a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(0,0,0,0.1);
+            padding: 12px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598880940086-4b627d4bcb5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Content Layout */
+        .content-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            height: fit-content;
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px 20px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-content {
+            padding: 20px;
+        }
+        
+        .confederation-list {
+            list-style: none;
+        }
+        
+        .confederation-list li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .confederation-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .confederation-list a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+        
+        .confederation-list a:hover {
+            color: var(--primary);
+        }
+        
+        .confederation-list i {
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .content-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .content-header h2 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-controls select {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: white;
+            color: var(--dark);
+        }
+        
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+        
+        .team-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .team-header {
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2b5c 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .team-flag {
+            width: 40px;
+            height: 30px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .team-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .team-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .team-details {
+            padding: 15px;
+        }
+        
+        .team-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .team-details i {
+            color: var(--primary);
+            width: 16px;
+        }
+        
+        .team-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .team-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2b5c 100%);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #d0d0d0;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #d0d0d0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .teams-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .filter-controls {
+                width: 100%;
+            }
+            
+            .filter-controls select {
+                flex-grow: 1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>Football Legacy</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Search national teams...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-donate"></i>Essays</a>
+                    <a href="#"><i class="fas fa-user-plus"></i>Biography</a>
+                    <a href="#"><i class="fas fa-sign-in-alt"></i>Matches </a>
+                </div>
+            </div>
+            <nav>
+                <div class="container nav-container">
+                    <div class="nav-left">
+                        <a href="index.html"><i class="fas fa-home"></i> Main Page</a>
+                        <a href="#"><i class="fas fa-comments"></i> Talk</a>
+                        <a href="#"><i class="fas fa-book"></i> Read</a>
+                    </div>
+                    <div class="nav-right">
+                        <a href="#"><i class="fas fa-edit"></i> View source</a>
+                        <a href="#"><i class="fas fa-history"></i> View history</a>
+                        <a href="#"><i class="fas fa-tools"></i> Tools</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-flag"></i> National Teams</h1>
+            <p>Explore football national teams from around the world - from World Cup champions to emerging football nations</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2><i class="fas fa-globe-americas"></i> Confederations</h2>
+                </div>
+                <div class="sidebar-content">
+                    <ul class="confederation-list">
+                        <li><a href="#"><i class="fas fa-futbol"></i> FIFA - All Teams</a></li>
+                        <li><a href="#"><i class="fas fa-globe-europe"></i> UEFA - Europe</a></li>
+                        <li><a href="#"><i class="fas fa-globe-americas"></i> CONMEBOL - South America</a></li>
+                        <li><a href="#"><i class="fas fa-globe-americas"></i> CONCACAF - North & Central America</a></li>
+                        <li><a href="#"><i class="fas fa-globe-africa"></i> CAF - Africa</a></li>
+                        <li><a href="#"><i class="fas fa-globe-asia"></i> AFC - Asia</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> OFC - Oceania</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="content-header">
+                    <h2><i class="fas fa-list"></i> All National Teams</h2>
+                    <div class="filter-controls">
+                        <select id="confederation-filter">
+                            <option value="all">All Confederations</option>
+                            <option value="uefa">UEFA (Europe)</option>
+                            <option value="conmebol">CONMEBOL (South America)</option>
+                            <option value="concacaf">CONCACAF (North America)</option>
+                            <option value="caf">CAF (Africa)</option>
+                            <option value="afc">AFC (Asia)</option>
+                            <option value="ofc">OFC (Oceania)</option>
+                        </select>
+                        <select id="region-filter">
+                            <option value="all">All Regions</option>
+                            <option value="europe">Europe</option>
+                            <option value="south-america">South America</option>
+                            <option value="north-america">North America</option>
+                            <option value="central-america">Central America</option>
+                            <option value="caribbean">Caribbean</option>
+                            <option value="africa">Africa</option>
+                            <option value="asia">Asia</option>
+                            <option value="oceania">Oceania</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="teams-grid">
+                    <!-- Team Card Template -->
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇧🇷</div>
+                            <div class="team-info">
+                                <h3>Brazil</h3>
+                                <p>Confederação Brasileira de Futebol</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 5 (1958, 1962, 1970, 1994, 2002)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONMEBOL</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 3</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Dorival Júnior</p>
+                            <a href="brazil.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇩🇪</div>
+                            <div class="team-info">
+                                <h3>Germany</h3>
+                                <p>Deutscher Fußball-Bund</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 4 (1954, 1974, 1990, 2014)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 16</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Julian Nagelsmann</p>
+                            <a href="germany.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇦🇷</div>
+                            <div class="team-info">
+                                <h3>Argentina</h3>
+                                <p>Asociación del Fútbol Argentino</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 3 (1978, 1986, 2022)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONMEBOL</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 1</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Lionel Scaloni</p>
+                            <a href="argentina.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇫🇷</div>
+                            <div class="team-info">
+                                <h3>France</h3>
+                                <p>Fédération Française de Football</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 2 (1998, 2018)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 2</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Didier Deschamps</p>
+                            <a href="france.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇪🇸</div>
+                            <div class="team-info">
+                                <h3>Spain</h3>
+                                <p>Real Federación Española de Fútbol</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 1 (2010)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 8</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Luis de la Fuente</p>
+                            <a href="spain.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                            <div class="team-info">
+                                <h3>England</h3>
+                                <p>The Football Association</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 1 (1966)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 4</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Gareth Southgate</p>
+                            <a href="england.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇵🇹</div>
+                            <div class="team-info">
+                                <h3>Portugal</h3>
+                                <p>Federação Portuguesa de Futebol</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 6</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Roberto Martínez</p>
+                            <a href="portugal.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇳🇱</div>
+                            <div class="team-info">
+                                <h3>Netherlands</h3>
+                                <p>Koninklijke Nederlandse Voetbalbond</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 7</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Ronald Koeman</p>
+                            <a href="netherlands.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="uefa" data-region="europe">
+                        <div class="team-header">
+                            <div class="team-flag">🇮🇹</div>
+                            <div class="team-info">
+                                <h3>Italy</h3>
+                                <p>Federazione Italiana Giuoco Calcio</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 4 (1934, 1938, 1982, 2006)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> UEFA</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 9</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Luciano Spalletti</p>
+                            <a href="italy.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="conmebol" data-region="south-america">
+                        <div class="team-header">
+                            <div class="team-flag">🇺🇾</div>
+                            <div class="team-info">
+                                <h3>Uruguay</h3>
+                                <p>Asociación Uruguaya de Fútbol</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 2 (1930, 1950)</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONMEBOL</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 15</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Marcelo Bielsa</p>
+                            <a href="uruguay.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="conmebol" data-region="south-america">
+                        <div class="team-header">
+                            <div class="team-flag">🇨🇱</div>
+                            <div class="team-info">
+                                <h3>Chile</h3>
+                                <p>Federación de Fútbol de Chile</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONMEBOL</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 42</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Ricardo Gareca</p>
+                            <a href="chile.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="concacaf" data-region="north-america">
+                        <div class="team-header">
+                            <div class="team-flag">🇺🇸</div>
+                            <div class="team-info">
+                                <h3>United States</h3>
+                                <p>United States Soccer Federation</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONCACAF</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 11</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Gregg Berhalter</p>
+                            <a href="usa.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="concacaf" data-region="north-america">
+                        <div class="team-header">
+                            <div class="team-flag">🇲🇽</div>
+                            <div class="team-info">
+                                <h3>Mexico</h3>
+                                <p>Federación Mexicana de Fútbol</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CONCACAF</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 14</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Jaime Lozano</p>
+                            <a href="mexico.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="caf" data-region="africa">
+                        <div class="team-header">
+                            <div class="team-flag">🇸🇳</div>
+                            <div class="team-info">
+                                <h3>Senegal</h3>
+                                <p>Fédération Sénégalaise de Football</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CAF</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 17</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Aliou Cissé</p>
+                            <a href="senegal.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="caf" data-region="africa">
+                        <div class="team-header">
+                            <div class="team-flag">🇲🇦</div>
+                            <div class="team-info">
+                                <h3>Morocco</h3>
+                                <p>Fédération Royale Marocaine de Football</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> CAF</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 13</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Walid Regragui</p>
+                            <a href="morocco.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="afc" data-region="asia">
+                        <div class="team-header">
+                            <div class="team-flag">🇯🇵</div>
+                            <div class="team-info">
+                                <h3>Japan</h3>
+                                <p>Japan Football Association</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> AFC</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 18</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Hajime Moriyasu</p>
+                            <a href="japan.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="afc" data-region="asia">
+                        <div class="team-header">
+                            <div class="team-flag">🇰🇷</div>
+                            <div class="team-info">
+                                <h3>South Korea</h3>
+                                <p>Korea Football Association</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> AFC</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 23</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Hwang Sun-hong</p>
+                            <a href="south-korea.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card" data-confederation="ofc" data-region="oceania">
+                        <div class="team-header">
+                            <div class="team-flag">🇳🇿</div>
+                            <div class="team-info">
+                                <h3>New Zealand</h3>
+                                <p>New Zealand Football</p>
+                            </div>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-trophy"></i> <strong>World Cups:</strong> 0</p>
+                            <p><i class="fas fa-flag"></i> <strong>Confederation:</strong> OFC</p>
+                            <p><i class="fas fa-ranking-star"></i> <strong>FIFA Ranking:</strong> 104</p>
+                            <p><i class="fas fa-user"></i> <strong>Coach:</strong> Darren Bazeley</p>
+                            <a href="new-zealand.html" class="team-link">View full profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Football Legacy</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About us</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-hands-helping"></i> Donate</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> Developers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-users"></i> Community portal</a></li>
+                        <li><a href="#"><i class="fas fa-tasks"></i> Recent changes</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-gavel"></i> Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Content</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> Featured articles</a></li>
+                        <li><a href="#"><i class="fas fa-random"></i> Random article</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Football books</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Download center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tools</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-link"></i> Related sites</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> Upload file</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> Translate</a></li>
+                        <li><a href="#"><i class="fas fa-rss"></i> RSS feeds</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Football Legacy content is available under the Creative Commons Attribution-ShareAlike License 4.0.</p>
+                <p>Additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy.</p>
+                <p>Football Legacy is a non-profit project built by football enthusiasts worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const confederationFilter = document.getElementById('confederation-filter');
+            const regionFilter = document.getElementById('region-filter');
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            function filterTeams() {
+                const confederationValue = confederationFilter.value;
+                const regionValue = regionFilter.value;
+                
+                teamCards.forEach(card => {
+                    const cardConfederation = card.getAttribute('data-confederation');
+                    const cardRegion = card.getAttribute('data-region');
+                    
+                    const showByConfederation = confederationValue === 'all' || cardConfederation === confederationValue;
+                    const showByRegion = regionValue === 'all' || cardRegion === regionValue;
+                    
+                    if (showByConfederation && showByRegion) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            confederationFilter.addEventListener('change', filterTeams);
+            regionFilter.addEventListener('change', filterTeams);
+        });
+    </script>
+</body>
+</html>
